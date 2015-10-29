@@ -18,12 +18,14 @@
 	border: solid 5px #ffffff;
 	background-color: Coral;
 	width: 1110px;
+	text-align: center;
 }
 .day_of_week{
 	border: solid 5px #ffffff;
 	background-color: Coral;
 	width: 150px;
 	display: inline-block;
+	text-align: center;
 	float: left;
 }
 .monthly_day{

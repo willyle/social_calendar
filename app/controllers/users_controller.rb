@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	def create
 		if params[:email] == params[:email2] && params[:password] == params[:password2]
 			@user = User.new(user_params)
+			@user.last_login = Time.now
 			if @user.save
 				Profile.create(email: params[:email], user_id: @user.id)
 				session[:user_id] = @user.id

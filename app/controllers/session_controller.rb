@@ -1,7 +1,10 @@
 class SessionController < ApplicationController
 	def create
 		if params[:login].include? '@'
-			user = Profile.find_by(email: params[:login]).user
+			profile = Profile.find_by(email: params[:login])
+			if profile
+				user = profile.user
+			end
 		else
 			user = User.find_by(username: params[:login])
 		end
@@ -9,6 +12,7 @@ class SessionController < ApplicationController
 		if user
 			if params[:password] == user.password
 				session[:user_id] = user.id
+				user.update(last_login: Time.now)
 				flash[:notice] = "You have logged in successfully."
 			else
 				flash[:alert] = "Your login information is incorrect. Please try again."
