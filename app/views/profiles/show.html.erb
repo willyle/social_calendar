@@ -1,1 +1,38 @@
-<%= @profile.inspect %>
+<%= link_to "Edit Profile", '/profile/edit', method: 'get' %>
+
+<p>
+	Gender: <%= @profile.gender if @profile.gender.present? %>
+	<br><br>
+	Email: <%= @profile.email if @profile.email.present? %>
+	<br><br>
+	Birthday: <%= @profile.birthday.strftime('%m-%d-%Y') if @profile.birthday.present? %>
+	<br><br>
+	Work: <%= @profile.work if @profile.work.present? %>
+	<br><br>
+	Skills: <%= @profile.skills if @profile.skills.present? %>
+	<br><br>
+	Interests: <%= @profile.interests if @profile.interests.present? %>
+	<br><br>
+</p>
+
+<div id="monthly_header">
+	<h1><%= Time.now.strftime('%B %Y') %></h1>
+</div>
+
+<% day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
+<% for i in 0...7 %>
+	<div class="day_of_week">
+		<h3><%= day_of_week[i] %></h3>
+	</div>
+<% end %>
+
+<div class="clear"></div>
+
+<% for i in 1..5 %>
+	<% for i in 1..7 %>
+		<div class="monthly_day">
+		</div>
+	<% end %>
+
+	<div class="clear"></div>
+<% end %>

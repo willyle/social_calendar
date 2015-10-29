@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+#monthly_header{
+	border: solid 5px #ffffff;
+	background-color: Coral;
+	width: 1110px;
+}
+.day_of_week{
+	border: solid 5px #ffffff;
+	background-color: Coral;
+	width: 150px;
+	display: inline-block;
+	float: left;
+}
+.monthly_day{
+	border: solid 5px #ffffff;
+	background-color: Coral;
+	width: 150px;
+	height: 100px;
+	float: left;
+	display: inline-block;
+}
+.clear{
+	clear:both;
+}

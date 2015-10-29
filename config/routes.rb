@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/profiles' => 'profile#index'
+  get '/profile/edit' => 'profiles#edit'
+  post '/profile/update' => 'profiles#update'
   get '/profile' => 'profiles#show'
   get '/profile/:username' => 'profiles#show'
 
-  get '/events' => 'events#index'
+  resources :events
 
   post '/signup' => 'users#create'
   post '/login' => 'session#create'

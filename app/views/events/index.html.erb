@@ -4,13 +4,15 @@
 		<p>
 			<%= link_to event.title, event_path(event) %>
 			<br>
-			Description: <%= event.description %>
+			Description:<br><%= event.description %>
+			<br><br>
+			Date: <%= event.date.strftime('%B-%d-%Y') %>
 			<br>
-			Date: <%= event.date.strftime('%m-%d-%Y') %>
-			<br>
-			Time: <%= event.time.strftime('%h:%m:%s') %>
+			Time: <%= event.time.strftime('%I:%M %P') %>
 		</p>
 	<% end %>
 <% else %>
 	There are no events to display.
 <% end %>
+
+<%= link_to "Add New Event", "events/new", method: "get" %>

@@ -1,0 +1,17 @@
+<p>
+	Title: <%= @event.title %>
+	<br>
+	Description:<br><%= @event.description %>
+	<br><br>
+	Date: <%= @event.date.strftime('%B-%d-%Y') %>
+	<br>
+	Time: <%= @event.time.strftime('%I:%M %P') %>
+	<br>
+	<div id="address">
+	Address: <%= @event.address_1 %>
+	<br>
+	<%= @event.address_2 %> 
+	<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+	<%= @event.city %>, <%= @event.state %>
+	</div>
+</p>

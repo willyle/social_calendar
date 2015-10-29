@@ -6,4 +6,24 @@ class ProfilesController < ApplicationController
 			@profile = Profile.find_by(user_id: session[:user_id])
 		end
 	end
+
+	def edit
+		@profile = User.find(session[:user_id]).profile
+	end
+
+	def update
+		@profile = Profile.find(session[:user_id])
+		if @profile.update(profile_params)
+			flash[:notice] = "Your profile was updated successfully."
+		else
+			flash[:alert] = "Profile update failed"
+		end
+
+		redirect_to '/profile'
+	end
+
+	private
+		def profile_params
+			params.require(:profile).permit(:first_name, :last_name, :gender, :email, :birthday, :work, :skills, :interests)
+		end
 end
