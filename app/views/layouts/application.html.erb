@@ -7,8 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%= flash[:notice] if flash[:notice] %>
+	<%= flash[:alert] if flash[:alert] %>
+	<br>
+	
+	<% if session[:user_id] %>
+		<%= link_to 'Your Profile', '/profile', method: 'get' %>
+		<%= button_to 'Log Out', '/log_out', method: 'delete' %>
+	<% end %>
 
-<%= yield %>
+	<%= yield %>
 
 </body>
 </html>

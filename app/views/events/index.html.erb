@@ -1,0 +1,16 @@
+<h1>Events</h1>
+<% if @events %>
+	<% @events.each do |event| %>
+		<p>
+			<%= link_to event.title, event_path(event) %>
+			<br>
+			Description: <%= event.description %>
+			<br>
+			Date: <%= event.date.strftime('%m-%d-%Y') %>
+			<br>
+			Time: <%= event.time.strftime('%h:%m:%s') %>
+		</p>
+	<% end %>
+<% else %>
+	There are no events to display.
+<% end %>

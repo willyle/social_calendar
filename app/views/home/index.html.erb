@@ -1,0 +1,37 @@
+<h1>Social Calendar</h1>
+<p>Stay in the Loop</p>
+
+SIGNUP
+<%= form_tag "/signup", method: "post" do %>
+	<%= label_tag :username, "Username " %>
+	<%= text_field_tag :username %>
+	<br>
+	<%= label_tag :email, "Email " %>
+	<%= email_field_tag :email %>
+	<br>
+	<%= label_tag :email2, "Re-enter Email " %>
+	<%= email_field_tag :email2 %>
+	<br>
+	<%= label_tag :password, "Password " %>
+	<%= password_field_tag :password %>
+	<br>
+	(password must be 6 characters long)
+	<br>
+	<%= label_tag :password2, "Re-enter Password " %>
+	<%= password_field_tag :password2 %>
+	<br>
+	<%= submit_tag "Sign Up" %>
+<% end %>
+
+<br><br>
+
+LOGIN
+<%= form_tag "/login", method: "post" do %>
+	<%= label_tag :login, "Login " %>
+	<%= text_field_tag :login %>
+	<br>
+	<%= label_tag :password, "Password " %>
+	<%= password_field_tag :password %>
+	<br>
+	<%= submit_tag "Login" %>
+<% end %>

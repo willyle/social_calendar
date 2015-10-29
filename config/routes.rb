@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  get 'home/index'
+
+  root 'home#index'
+
+  get '/profiles' => 'profile#index'
+  get '/profile' => 'profiles#show'
+  get '/profile/:username' => 'profiles#show'
+
+  get '/events' => 'events#index'
+
+  post '/signup' => 'users#create'
+  post '/login' => 'session#create'
+  delete '/log_out' => 'session#destroy'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
