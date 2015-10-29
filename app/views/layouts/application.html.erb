@@ -12,6 +12,7 @@
 	<br>
 	
 	<% if session[:user_id] %>
+		<%= link_to 'All Groups', '/groups', method: 'get' %>
 		<%= link_to 'All Events', '/events', method: 'get' %>
 		<%= link_to 'Your Profile', '/profile', method: 'get' %>
 		<%= button_to 'Log Out', '/log_out', method: 'delete' %>

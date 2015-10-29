@@ -1,0 +1,9 @@
+<%= form_for @group do |f| %>
+	<%= f.label :tile %><br>
+	<%= f.text_field :title %>
+	<br><br>
+	<%= f.label :description %><br>
+	<%= f.text_area :description, cols: '50', rows: '20' %>
+	<br><br>
+	<%= f.submit "Add Group" %>
+<% end %>

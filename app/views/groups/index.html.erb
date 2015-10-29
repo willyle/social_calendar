@@ -1,0 +1,14 @@
+<h1>Groups</h1>
+<% if @groups %>
+	<% @groups.each do |group| %>
+		<p>
+			<%= link_to group.title, group_path(group) %>
+			<br>
+			Description:<br><%= group.description %>
+		</p>
+	<% end %>
+<% else %>
+	There are no groups to display.
+<% end %>
+
+<%= link_to "Add New Group", "groups/new", method: "get" %>

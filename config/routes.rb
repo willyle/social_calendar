@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/profile/:username' => 'profiles#show'
 
   resources :events
+  resources :groups
 
   post '/signup' => 'users#create'
   post '/login' => 'session#create'
