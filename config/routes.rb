@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/profiles' => 'profile#index'
   get '/profile/edit' => 'profiles#edit'
   post '/profile/update' => 'profiles#update'
+  get '/profile/move/:move' => 'profiles#show'
   get '/profile' => 'profiles#show'
   get '/profile/:username' => 'profiles#show'
 

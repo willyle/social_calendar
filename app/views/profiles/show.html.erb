@@ -15,8 +15,13 @@
 	<br><br>
 </p>
 
-<% x = 0 %>
-<% showing_month = Time.now + x.month %>
+<%= link_to 'Previous 5', "/profile/move/prev#{@offset-5}", method: 'get' %>
+<%= link_to 'Previous', "/profile/move/prev#{@offset-1}", method: 'get' %>
+
+<%= link_to 'Next', "/profile/move/next#{@offset+1}", method: 'get' %>
+<%= link_to 'Next 5', "/profile/move/next#{@offset+5}", method: 'get' %>
+
+<% showing_month = Time.now + @offset.month %>
 <div id="monthly_header">
 	<h1><%= showing_month.strftime('%B %Y') %></h1>
 </div>
@@ -43,10 +48,12 @@ end %>
 <% day_count = 1 
 	block_count = 0 %>
 
-<% for i in 1..first_day_in_this_month %>
-	<div class="not_monthly_day">
-	</div>
-	<% block_count += 1 %>
+<% if first_day_in_this_month != 8 %>
+	<% for i in 1..first_day_in_this_month %>
+		<div class="not_monthly_day">
+		</div>
+		<% block_count += 1 %>
+	<% end %>
 <% end %>
 
 <% for i in first_day_in_this_month...7 %>
