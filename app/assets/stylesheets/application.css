@@ -17,7 +17,7 @@
 #monthly_header{
 	border: solid 5px #ffffff;
 	background-color: Coral;
-	width: 1110px;
+	width: 1105px;
 	text-align: center;
 }
 .day_of_week{
@@ -28,6 +28,15 @@
 	text-align: center;
 	float: left;
 }
+.not_monthly_day{
+	border: solid 5px #ffffff;
+	background-color: #ffffff;
+	width: 150px;
+	height: 100px;
+	float: left;
+	display: inline-block;
+
+}
 .monthly_day{
 	border: solid 5px #ffffff;
 	background-color: Coral;
@@ -35,6 +44,16 @@
 	height: 100px;
 	float: left;
 	display: inline-block;
+	font-size: 25px;
+}
+#today{
+	border: solid 5px #ffffff;
+	background-color: yellow;
+	width: 150px;
+	height: 100px;
+	float: left;
+	display: inline-block;
+	font-size: 25px;
 }
 .clear{
 	clear:both;

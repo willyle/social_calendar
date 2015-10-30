@@ -15,9 +15,21 @@
 	<br><br>
 </p>
 
+<% x = 0 %>
+<% showing_month = Time.now + x.month %>
 <div id="monthly_header">
-	<h1><%= Time.now.strftime('%B %Y') %></h1>
+	<h1><%= showing_month.strftime('%B %Y') %></h1>
 </div>
+
+<% today = Time.now.strftime('%d').to_i %>
+
+<% days_in_this_month = Time.days_in_month(showing_month.strftime('%m').to_i,showing_month.strftime('%Y').to_i) %>
+
+<% first_day_in_this_month = (showing_month - (today-1).day).strftime('%w').to_i %>
+
+<% if today > days_in_this_month
+	first_day_in_this_month += today - days_in_this_month 
+end %>
 
 <% day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
 <% for i in 0...7 %>
@@ -28,11 +40,42 @@
 
 <div class="clear"></div>
 
+<% day_count = 1 
+	block_count = 0 %>
+
+<% for i in 1..first_day_in_this_month %>
+	<div class="not_monthly_day">
+	</div>
+	<% block_count += 1 %>
+<% end %>
+
+<% for i in first_day_in_this_month...7 %>
+	<% block_count += 1 %>
+	<div class="monthly_day">
+		<%= day_count %>
+		<% day_count+=1 %>
+	</div>
+<% end %>
+
+<div class="clear"></div>
+
 <% for i in 1..5 %>
 	<% for i in 1..7 %>
-		<div class="monthly_day">
-		</div>
-	<% end %>
+		<% block_count += 1 %>
 
+		<% if day_count == today && today <= days_in_this_month %>
+			<div id="today">
+				<%= day_count %>
+			</div>
+		<% elsif day_count <= days_in_this_month %>
+			<div class="monthly_day">
+				<%= day_count %>
+			</div>
+		<% end %>
+
+		<% day_count += 1 %>
+
+		<% break if day_count > days_in_this_month %>
+	<% end %>
 	<div class="clear"></div>
 <% end %>
