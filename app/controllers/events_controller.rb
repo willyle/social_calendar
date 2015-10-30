@@ -11,6 +11,19 @@ class EventsController < ApplicationController
 		@event = Event.new
 	end
 
+	def edit
+		@event = Event.find(params[:id])
+	end
+	def update
+		@event = Event.find(params[:id])
+		if @event.update(event_params)
+			flash[:notice] = "Your event was updated successfully."
+		else
+			flash[:alert] = "Event update failed"
+		end
+
+		redirect_to '/events'
+	end
 	def create
 		@event = Event.new(event_params)
 		@event.creator_id = session[:user_id]

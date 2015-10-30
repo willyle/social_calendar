@@ -1,0 +1,27 @@
+<%= form_for @event do |f| %>
+	<%= f.label :tile %><br>
+	<%= f.text_field :title %>
+	<br><br>
+	<%= f.label :description %><br>
+	<%= f.text_area :description, cols: '50', rows: '20' %>
+	<br><br>
+	<%= f.label :address_1 %><br>
+	<%= f.text_field :address_1 %>
+	<br><br>
+	<%= f.label :address_2 %><br>
+	<%= f.text_field :address_2 %>
+	<br><br>
+	<%= f.label :city %> &nbsp;
+	<%= f.text_field :city %>
+	&nbsp; &nbsp;
+	<%= f.label :state %> &nbsp;
+	<%= f.text_field :state %>
+	<br><br>
+	<%= f.label :date %><br>
+	<%= f.date_field :date %>
+	<br><br>
+	<%= f.label :time %><br>
+	<%= f.time_field :time %>
+	<br><br>
+	<%= f.submit "Update Event" %>
+<% end %>

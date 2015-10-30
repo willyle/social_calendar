@@ -10,6 +10,11 @@
 			<br>
 			Time: <%= event.time.strftime('%I:%M %P') %>
 		</p>
+
+		<% if event.creator_id == session[:user_id] %>
+			<%= link_to "Edit Event", edit_event_path(event), method: "get" %>
+			<br><br>
+		<% end %>
 	<% end %>
 <% else %>
 	There are no events to display.
