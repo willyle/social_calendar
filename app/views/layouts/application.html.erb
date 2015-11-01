@@ -7,19 +7,59 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<%= flash[:notice] if flash[:notice] %>
-	<%= flash[:alert] if flash[:alert] %>
-	<br>
+	<div id = "notice">
+		<%= flash[:notice] if flash[:notice] %>
+	</div>
+	<div id = "alert">
+		<%= flash[:alert] if flash[:alert] %>
+	</div>
 	
-	<% if session[:user_id] %>
-		<%= link_to 'All Users', '/users', method: 'get' %>
-		<%= link_to 'All Groups', '/groups', method: 'get' %>
-		<%= link_to 'All Events', '/events', method: 'get' %>
-		<%= link_to 'Your Profile', '/profile', method: 'get' %>
-		<%= button_to 'Log Out', '/log_out', method: 'delete' %>
-	<% end %>
+	<div id="wrapper">
+		<header>
+			<div id="logo">
+				Social Calendar
+			</div>
 
-	<%= yield %>
+			<% if session[:user_id] %>
+				<div id="logout">
+					<%= button_to 'Log Out', '/log_out', method: 'delete' %>
+				</div>
+			<% end %>
 
+			<div class="clear"></div>
+
+			<% if session[:user_id] %>
+				<nav>
+					<%= link_to 'All Users', '/users', method: 'get' %>
+					<%= link_to 'All Groups', '/groups', method: 'get' %>
+					<%= link_to 'All Events', '/events', method: 'get' %>
+					<%= link_to 'Your Profile', '/profile', method: 'get' %>
+				</nav>
+
+				<div class="clear"></div>
+			<% else %>
+				<div id="signin">
+					<%= form_tag "/login", method: "post" do %>
+						<%= label_tag :login, "Login " %>
+						<%= text_field_tag :login %>
+						<%= label_tag :password, "Password " %>
+						<%= password_field_tag :password %>
+						<%= submit_tag "Login" %>
+					<% end %>
+				</div>
+
+				<div class="clear"></div>
+			<% end %>
+
+		</header>
+
+		<div id="content">
+			<%= yield %>
+		</div>
+
+		<footer>
+			&#169; 2015 <span id="blue_bold">Social Calendar</span> - All rights reserved.
+		</footer>
+	</div>
 </body>
 </html>

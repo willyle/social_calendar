@@ -18,73 +18,52 @@
 	Interests: <%= @profile.interests if @profile.interests.present? %>
 	<br><br>
 </p>
+<div id="calendar">
+	<div id="cal_nav">
+		<%= link_to 'Previous 5', "/profile/move/prev#{@offset-5}", method: 'get' %>
+		<%= link_to 'Previous', "/profile/move/prev#{@offset-1}", method: 'get' %>
 
-<%= link_to 'Previous 5', "/profile/move/prev#{@offset-5}", method: 'get' %>
-<%= link_to 'Previous', "/profile/move/prev#{@offset-1}", method: 'get' %>
-
-<%= link_to 'Next', "/profile/move/next#{@offset+1}", method: 'get' %>
-<%= link_to 'Next 5', "/profile/move/next#{@offset+5}", method: 'get' %>
-
-<% showing_month = Time.now + @offset.month %>
-
-<div id="monthly_header">
-	<h1><%= showing_month.strftime('%B %Y') %></h1>
-</div>
-
-<% today = Time.now.strftime('%d').to_i %>
-
-<% days_in_this_month = Time.days_in_month(showing_month.strftime('%m').to_i,showing_month.strftime('%Y').to_i) %>
-
-<% first_day_in_this_month = (showing_month - (today-1).day).strftime('%w').to_i %>
-
-<% if today > days_in_this_month
-	first_day_in_this_month += today - days_in_this_month 
-end %>
-
-<% day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
-<% for i in 0...7 %>
-	<div class="day_of_week">
-		<h3><%= day_of_week[i] %></h3>
+		<%= link_to 'Next', "/profile/move/next#{@offset+1}", method: 'get' %>
+		<%= link_to 'Next 5', "/profile/move/next#{@offset+5}", method: 'get' %>
 	</div>
-<% end %>
+	
+	<% showing_month = Time.now + @offset.month %>
 
-<div class="clear"></div>
+	<div id="monthly_header">
+		<h1><%= showing_month.strftime('%B %Y') %></h1>
+	</div>
 
-<% day_count = 1 
-	block_count = 0 %>
+	<% today = Time.now.strftime('%d').to_i %>
 
-<% if first_day_in_this_month < 7 %>
-	<% for i in 1..first_day_in_this_month %>
-		<div class="not_monthly_day">
+	<% days_in_this_month = Time.days_in_month(showing_month.strftime('%m').to_i,showing_month.strftime('%Y').to_i) %>
+
+	<% first_day_in_this_month = (showing_month - (today-1).day).strftime('%w').to_i %>
+
+	<% if today > days_in_this_month
+		first_day_in_this_month += today - days_in_this_month 
+	end %>
+
+	<% day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
+	<% for i in 0...7 %>
+		<div class="day_of_week">
+			<h3><%= day_of_week[i] %></h3>
 		</div>
-		<% block_count += 1 %>
 	<% end %>
-<% end %>
 
-<% for i in first_day_in_this_month...7 %>
-	<% block_count += 1 %>
+	<div class="clear"></div>
 
-	<% today_events = [] %>
-	<% @events.each do |event| %>
-		<% if event.date.strftime('%d').to_i == day_count %>
-			<% today_events.push(event) %>
+	<% day_count = 1 
+		block_count = 0 %>
+
+	<% if first_day_in_this_month < 7 %>
+		<% for i in 1..first_day_in_this_month %>
+			<div class="not_monthly_day">
+			</div>
+			<% block_count += 1 %>
 		<% end %>
 	<% end %>
 
-	<div class="monthly_day">
-		<h3><%= day_count %></h3>
-		<% today_events.each do |event| %>
-			<% title = event.title[0..15] + " ..." %>
-			<p><%= link_to title, event_path(event) %></p>
-		<% end %>
-		<% day_count+=1 %>
-	</div>
-<% end %>
-
-<div class="clear"></div>
-
-<% for i in 1..5 %>
-	<% for i in 1..7 %>
+	<% for i in first_day_in_this_month...7 %>
 		<% block_count += 1 %>
 
 		<% today_events = [] %>
@@ -94,27 +73,51 @@ end %>
 			<% end %>
 		<% end %>
 
-		<% if day_count == today && today <= days_in_this_month && showing_month.strftime('%m') == Time.now.strftime('%m') %>
-			<div id="today">
-				<h3><%= day_count %></h3>
-				<% today_events.each do |event| %>
+		<div class="monthly_day">
+			<h3><%= day_count %></h3>
+			<% today_events.each do |event| %>
 				<% title = event.title[0..15] + " ..." %>
-					<p><%= link_to title, event_path(event) %></p>
-				<% end %>
-			</div>
-		<% elsif day_count <= days_in_this_month %>
-			<div class="monthly_day">
-				<h3><%= day_count %></h3>
-				<% today_events.each do |event| %>
-					<% title = event.title[0..15] + " ..." %>
-					<p><%= link_to title, event_path(event) %></p>
-				<% end %>
-			</div>
-		<% end %>
-
-		<% day_count += 1 %>
-
-		<% break if day_count > days_in_this_month %>
+				<p><%= link_to title, event_path(event) %></p>
+			<% end %>
+			<% day_count+=1 %>
+		</div>
 	<% end %>
+
 	<div class="clear"></div>
-<% end %>
+
+	<% for i in 1..5 %>
+		<% for i in 1..7 %>
+			<% block_count += 1 %>
+
+			<% today_events = [] %>
+			<% @events.each do |event| %>
+				<% if event.date.strftime('%d').to_i == day_count %>
+					<% today_events.push(event) %>
+				<% end %>
+			<% end %>
+
+			<% if day_count == today && today <= days_in_this_month && showing_month.strftime('%m') == Time.now.strftime('%m') %>
+				<div id="today">
+					<h3><%= day_count %></h3>
+					<% today_events.each do |event| %>
+					<% title = event.title[0..15] + " ..." %>
+						<p><%= link_to title, event_path(event) %></p>
+					<% end %>
+				</div>
+			<% elsif day_count <= days_in_this_month %>
+				<div class="monthly_day">
+					<h3><%= day_count %></h3>
+					<% today_events.each do |event| %>
+						<% title = event.title[0..15] + " ..." %>
+						<p><%= link_to title, event_path(event) %></p>
+					<% end %>
+				</div>
+			<% end %>
+
+			<% day_count += 1 %>
+
+			<% break if day_count > days_in_this_month %>
+		<% end %>
+		<div class="clear"></div>
+	<% end %>
+</div>

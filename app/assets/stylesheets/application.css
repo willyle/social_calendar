@@ -14,6 +14,88 @@
  *= require_self
  */
 
+html, body{
+	background-color: #504747;
+}
+
+/*layout css*/
+#wrapper{
+	background-color: #e7eeb2;
+	width: 1140px;
+	margin: 0 auto;
+}
+header{
+	background-color: #79bea6;
+	width: 1140px;
+	height: 100px;
+}
+#logo{
+	float:left;
+	font-size: 50px;
+}
+#logout{
+	margin: 10px;
+	float: right;
+}
+#logout input {
+	width: 100px;
+	height: 50px;
+}
+#signin{
+	float: right;
+}
+nav a{
+	text-decoration: none;
+	float: right;
+	margin: 0 10px;
+}
+nav a:hover{
+	background-color: Steelblue;
+}
+footer{
+	background-color: #79bea6;
+	max-width: 1140px;
+	height: 75px;
+	text-align: center;
+	padding-top: 20px;
+	font-size: 14px;
+}
+#blue_bold {
+	font-weight: bold;
+}
+#notice{
+	background-color: yellow;
+	position: fixed;
+	left: 40%;
+	text-align: center;
+}
+#alert{
+	background-color: red;
+	position: fixed;
+	left: 40%;
+	text-align: center;
+}
+/*home css*/
+#home_background{
+	background-image: url("/assets/home_background.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+   height: 641px;
+}
+#signup{
+	color:#ffffff;
+	font-size: 20px;
+	width: 330px;
+	margin: 0 auto;
+	padding-top: 100px;
+	text-align: center;
+}
+#signup h1{
+	margin-top: 0px;
+}
+#signup_form{
+	text-align: right;
+}
 /*event css*/
 .event{
 	border: solid 5px #ffffff;
@@ -22,6 +104,22 @@
 	float: left;
 }
 /*profile css*/
+#calendar{
+	width: 1120px;
+	margin: 10px auto;
+
+}
+#cal_nav{
+	width: 390px;
+	margin: 0 auto;
+}
+#cal_nav a{
+	text-decoration: none;
+	margin: 0 20px;
+}
+#cal_nav a:hover{
+	background-color: Steelblue;
+}
 #monthly_header{
 	border: solid 5px #ffffff;
 	background-color: Coral;
@@ -37,8 +135,8 @@
 	float: left;
 }
 .not_monthly_day{
-	border: solid 5px #ffffff;
-	background-color: #ffffff;
+	border: solid 5px #e7eeb2;
+	background-color: #e7eeb2;
 	width: 150px;
 	height: 100px;
 	float: left;
