@@ -1,9 +1,23 @@
 <h1>Events</h1>
+<p><%= link_to "Add New Event", "events/new", method: "get" %></p>
 <% if @events %>
 	<% @events.each do |event| %>
-		<p>
-			<%= link_to event.title, event_path(event) %>
-			<%= link_to "Attend", "/events/#{event.id}/attend" %>
+		<% attending = false %>
+		<% @attendances.each do |attendance| %>
+			<% if attendance.event_id == event.id
+				attending = true 
+			end %>
+		<% end %>
+		<div class="event">
+			<% title = event.title[0..19] + " ..." %>
+			<%= link_to title, event_path(event) %>
+
+			<% if attending %>
+				<%= link_to "Unattend", "/events/#{event.id}/unattend" %>
+			<% else %>
+				<%= link_to "Attend", "/events/#{event.id}/attend" %>
+			<% end %>
+
 			<% if event.creator_id == session[:user_id] %>
 				<%= link_to "Edit Event", edit_event_path(event), method: "get" %>
 			<% end %>
@@ -11,12 +25,9 @@
 			Description:<br><%= event.description %>
 			<br><br>
 			Date: <%= event.date.strftime('%B-%d-%Y') %>
-			<br>
 			Time: <%= event.time.strftime('%I:%M %P') %>
-		</p>
+		</div>
 	<% end %>
 <% else %>
 	There are no events to display.
 <% end %>
-<br><br>
-<%= link_to "Add New Event", "events/new", method: "get" %>

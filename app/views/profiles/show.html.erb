@@ -4,6 +4,7 @@
 </p>
 
 <p>
+	<h1><%= full_name %></h1>
 	Gender: <%= @profile.gender if @profile.gender.present? %>
 	<br><br>
 	Email: <%= @profile.email if @profile.email.present? %>
@@ -73,7 +74,8 @@ end %>
 	<div class="monthly_day">
 		<h3><%= day_count %></h3>
 		<% today_events.each do |event| %>
-			<p><%= link_to event.title, event_path(event) %></p>
+			<% title = event.title[0..15] + " ..." %>
+			<p><%= link_to title, event_path(event) %></p>
 		<% end %>
 		<% day_count+=1 %>
 	</div>
@@ -96,14 +98,16 @@ end %>
 			<div id="today">
 				<h3><%= day_count %></h3>
 				<% today_events.each do |event| %>
-					<p><%= link_to event.title, event_path(event) %></p>
+				<% title = event.title[0..15] + " ..." %>
+					<p><%= link_to title, event_path(event) %></p>
 				<% end %>
 			</div>
 		<% elsif day_count <= days_in_this_month %>
 			<div class="monthly_day">
 				<h3><%= day_count %></h3>
 				<% today_events.each do |event| %>
-					<p><%= link_to event.title, event_path(event) %></p>
+					<% title = event.title[0..15] + " ..." %>
+					<p><%= link_to title, event_path(event) %></p>
 				<% end %>
 			</div>
 		<% end %>

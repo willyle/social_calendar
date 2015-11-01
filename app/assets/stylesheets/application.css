@@ -14,6 +14,14 @@
  *= require_self
  */
 
+/*event css*/
+.event{
+	border: solid 5px #ffffff;
+	background-color: Coral;
+	width: 300px;
+	float: left;
+}
+/*profile css*/
 #monthly_header{
 	border: solid 5px #ffffff;
 	background-color: Coral;

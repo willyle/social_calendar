@@ -18,7 +18,26 @@
 	</div>
 </p>
 
-<%= link_to "Attend", "/events/#{@event.id}/attend" %>
+<p>
+	<h2>Attendees</h2>
+	<% attendees = @event.users %>
+	<% attendees.each do |attendee| %>
+		<p><%= link_to attendee.username, "/profile/#{attendee.username}" %></p>
+	<% end %>
+</p>
+
+<% attending = false 
+	@attendances.each do |attendance|
+		if attendance.event_id == @event.id
+			attending = true %>
+			<%= link_to "Unattend", "/events/#{@event.id}/unattend" %>
+		<% end
+	end %>
+
+<% if attending == false %>
+	<%= link_to "Attend", "/events/#{@event.id}/attend" %>
+<% end %>
+
 <% if @event.creator_id == session[:user_id] %>
 	<%= link_to "Edit Event", edit_event_path(@event), method: "get" %>
 <% end %>

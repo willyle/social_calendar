@@ -1,10 +1,12 @@
 class EventsController < ApplicationController
 	def index
 		@events = Event.all.order(date: :asc)
+		@attendances = User.find(session[:user_id]).attendances
 	end
 	
 	def show
 		@event = Event.find(params[:id])
+		@attendances = User.find(session[:user_id]).attendances
 	end
 
 	def new
