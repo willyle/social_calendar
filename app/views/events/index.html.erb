@@ -3,6 +3,10 @@
 	<% @events.each do |event| %>
 		<p>
 			<%= link_to event.title, event_path(event) %>
+			<%= link_to "Attend", "/events/#{event.id}/attend" %>
+			<% if event.creator_id == session[:user_id] %>
+				<%= link_to "Edit Event", edit_event_path(event), method: "get" %>
+			<% end %>
 			<br>
 			Description:<br><%= event.description %>
 			<br><br>
@@ -10,14 +14,9 @@
 			<br>
 			Time: <%= event.time.strftime('%I:%M %P') %>
 		</p>
-
-		<% if event.creator_id == session[:user_id] %>
-			<%= link_to "Edit Event", edit_event_path(event), method: "get" %>
-			<br><br>
-		<% end %>
 	<% end %>
 <% else %>
 	There are no events to display.
 <% end %>
-
+<br><br>
 <%= link_to "Add New Event", "events/new", method: "get" %>

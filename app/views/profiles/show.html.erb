@@ -1,4 +1,7 @@
-<%= link_to "Edit Profile", '/profile/edit', method: 'get' %>
+
+<p>
+	<%= link_to "Edit Profile", '/profile/edit', method: 'get' %>
+</p>
 
 <p>
 	Gender: <%= @profile.gender if @profile.gender.present? %>
@@ -22,6 +25,7 @@
 <%= link_to 'Next 5', "/profile/move/next#{@offset+5}", method: 'get' %>
 
 <% showing_month = Time.now + @offset.month %>
+
 <div id="monthly_header">
 	<h1><%= showing_month.strftime('%B %Y') %></h1>
 </div>
@@ -48,7 +52,7 @@ end %>
 <% day_count = 1 
 	block_count = 0 %>
 
-<% if first_day_in_this_month != 8 %>
+<% if first_day_in_this_month < 7 %>
 	<% for i in 1..first_day_in_this_month %>
 		<div class="not_monthly_day">
 		</div>
@@ -58,8 +62,19 @@ end %>
 
 <% for i in first_day_in_this_month...7 %>
 	<% block_count += 1 %>
+
+	<% today_events = [] %>
+	<% @events.each do |event| %>
+		<% if event.date.strftime('%d').to_i == day_count %>
+			<% today_events.push(event) %>
+		<% end %>
+	<% end %>
+
 	<div class="monthly_day">
-		<%= day_count %>
+		<h3><%= day_count %></h3>
+		<% today_events.each do |event| %>
+			<p><%= link_to event.title, event_path(event) %></p>
+		<% end %>
 		<% day_count+=1 %>
 	</div>
 <% end %>
@@ -70,13 +85,26 @@ end %>
 	<% for i in 1..7 %>
 		<% block_count += 1 %>
 
-		<% if day_count == today && today <= days_in_this_month %>
+		<% today_events = [] %>
+		<% @events.each do |event| %>
+			<% if event.date.strftime('%d').to_i == day_count %>
+				<% today_events.push(event) %>
+			<% end %>
+		<% end %>
+
+		<% if day_count == today && today <= days_in_this_month && showing_month.strftime('%m') == Time.now.strftime('%m') %>
 			<div id="today">
-				<%= day_count %>
+				<h3><%= day_count %></h3>
+				<% today_events.each do |event| %>
+					<p><%= link_to event.title, event_path(event) %></p>
+				<% end %>
 			</div>
 		<% elsif day_count <= days_in_this_month %>
 			<div class="monthly_day">
-				<%= day_count %>
+				<h3><%= day_count %></h3>
+				<% today_events.each do |event| %>
+					<p><%= link_to event.title, event_path(event) %></p>
+				<% end %>
 			</div>
 		<% end %>
 

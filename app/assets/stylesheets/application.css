@@ -17,7 +17,7 @@
 #monthly_header{
 	border: solid 5px #ffffff;
 	background-color: Coral;
-	width: 1105px;
+	width: 1110px;
 	text-align: center;
 }
 .day_of_week{
@@ -44,7 +44,10 @@
 	height: 100px;
 	float: left;
 	display: inline-block;
-	font-size: 25px;
+	overflow: hidden;
+}
+.monthly_day h3{
+	margin: 0px;
 }
 #today{
 	border: solid 5px #ffffff;
@@ -53,7 +56,10 @@
 	height: 100px;
 	float: left;
 	display: inline-block;
-	font-size: 25px;
+	overflow: hidden;
+}
+#today h3{
+	margin: 0px;
 }
 .clear{
 	clear:both;

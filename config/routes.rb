@@ -10,8 +10,14 @@ Rails.application.routes.draw do
   get '/profile' => 'profiles#show'
   get '/profile/:username' => 'profiles#show'
 
+  get '/events/:id/attend' => 'attendances#create'
+  get '/events/:id/unattend' => 'attendances#destroy'
+
+  get '/users' => 'users#index'
+  
   resources :events
   resources :groups
+
 
   post '/signup' => 'users#create'
   post '/login' => 'session#create'

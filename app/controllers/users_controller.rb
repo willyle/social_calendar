@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+	def index
+		@users = User.all
+	end
 	def create
 		if params[:email] == params[:email2] && params[:password] == params[:password2]
 			@user = User.new(user_params)

@@ -1,0 +1,8 @@
+<h1>Users</h1>
+<% @users.each do |user| %>
+	<% if user.id != session[:user_id] %>
+		<p>
+			<%= link_to user.username, "/profile/#{user.username}" %>
+		</p>
+	<% end %>
+<% end %>

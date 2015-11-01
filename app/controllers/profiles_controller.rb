@@ -11,6 +11,11 @@ class ProfilesController < ApplicationController
 		else
 			@profile = Profile.find_by(user_id: session[:user_id])
 		end
+
+		showing_month = Time.now + @offset.month
+		today = Time.now.strftime('%d').to_i
+		days_in_this_month = Time.days_in_month(showing_month.strftime('%m').to_i,showing_month.strftime('%Y').to_i)
+		@events = @profile.user.events.where("date between ? and ?", showing_month - (today-1).day, showing_month + (days_in_this_month-today).day)
 	end
 
 	def edit

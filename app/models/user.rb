@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 				 length: { minimum: 6}
 
 	has_one :profile
+	has_many :attendances
 	has_many :events, through: :attendances
 	has_many :groups, through: :users_groups
 	has_and_belongs_to_many :users,
