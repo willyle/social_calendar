@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
 	validates :title,
 				 uniqueness: true,
-				 presence: true
+				 presence: {message: "must be filled in"}
 
 	validates :address_1,
 				 presence: true
