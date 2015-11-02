@@ -11,7 +11,16 @@
 		<%= flash[:notice] if flash[:notice] %>
 	</div>
 	<div id = "alert">
-		<%= flash[:alert] if flash[:alert] %>
+		<% if flash[:alert] %>
+			<% if flash[:alert].class == Array %>
+				<% flash[:alert].each do |alert| %>
+					<%= alert %>
+					<br>
+				<% end %>
+			<% else %>
+				<%= flash[:alert] %>
+			<% end %>
+		<% end %>
 	</div>
 	
 	<div id="wrapper">
@@ -58,7 +67,7 @@
 		</div>
 
 		<footer>
-			&#169; 2015 <span id="blue_bold">Social Calendar</span> - All rights reserved.
+			&#169; 2015 <span class="bold">Social Calendar</span> - All rights reserved.
 		</footer>
 	</div>
 </body>

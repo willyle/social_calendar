@@ -18,6 +18,7 @@
 	Interests: <%= @profile.interests if @profile.interests.present? %>
 	<br><br>
 </p>
+
 <div id="calendar">
 	<div id="cal_nav">
 		<%= link_to 'Previous 5', "/profile/move/prev#{@offset-5}", method: 'get' %>
@@ -73,14 +74,25 @@
 			<% end %>
 		<% end %>
 
-		<div class="monthly_day">
-			<h3><%= day_count %></h3>
-			<% today_events.each do |event| %>
+		<% if day_count == today && today <= days_in_this_month && showing_month.strftime('%m') == Time.now.strftime('%m') %>
+			<div id="today">
+				<h3><%= day_count %></h3>
+				<% today_events.each do |event| %>
 				<% title = event.title[0..15] + " ..." %>
-				<p><%= link_to title, event_path(event) %></p>
-			<% end %>
-			<% day_count+=1 %>
-		</div>
+					<p><%= link_to title, event_path(event) %></p>
+				<% end %>
+			</div>
+		<% else %>
+			<div class="monthly_day">
+				<h3><%= day_count %></h3>
+				<% today_events.each do |event| %>
+					<% title = event.title[0..15] + " ..." %>
+					<p><%= link_to title, event_path(event) %></p>
+				<% end %>
+			</div>
+		<% end %>
+
+		<% day_count+=1 %>
 	<% end %>
 
 	<div class="clear"></div>

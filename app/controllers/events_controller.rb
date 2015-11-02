@@ -34,7 +34,12 @@ class EventsController < ApplicationController
 			flash[:notice] = "You have successfully added an event."
 			redirect_to '/events'
 		else
-			flash[:alert] = "An error has occurred. Please try again."
+			if @event.errors.full_messages.any?
+				flash[:alert] = []
+				@event.errors.full_messages.each do |message|
+					flash[:alert].push(message)  
+				end
+			end
 			redirect_to :back
 		end
 	end

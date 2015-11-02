@@ -25,7 +25,7 @@ html, body{
 	margin: 0 auto;
 }
 header{
-	background-color: #79bea6;
+	background-color: #8de5e1;
 	width: 1140px;
 	height: 100px;
 }
@@ -46,6 +46,7 @@ header{
 }
 nav a{
 	text-decoration: none;
+	color: #ffffff;
 	float: right;
 	margin: 0 10px;
 }
@@ -53,24 +54,26 @@ nav a:hover{
 	background-color: Steelblue;
 }
 footer{
-	background-color: #79bea6;
+	background-color: #8de5e1;
 	max-width: 1140px;
 	height: 75px;
 	text-align: center;
 	padding-top: 20px;
 	font-size: 14px;
 }
-#blue_bold {
+.bold {
 	font-weight: bold;
 }
 #notice{
 	background-color: yellow;
+	width: 300px;
 	position: fixed;
 	left: 40%;
 	text-align: center;
 }
 #alert{
 	background-color: red;
+	width: 300px;
 	position: fixed;
 	left: 40%;
 	text-align: center;
@@ -79,8 +82,8 @@ footer{
 #home_background{
 	background-image: url("/assets/home_background.jpg");
 	background-repeat: no-repeat;
-	background-size: cover;
-   height: 641px;
+	background-size: 100%;
+	height: 641px;
 }
 #signup{
 	color:#ffffff;
@@ -99,9 +102,13 @@ footer{
 /*event css*/
 .event{
 	border: solid 5px #ffffff;
-	background-color: Coral;
+	background-color: #79bea6;
 	width: 300px;
 	float: left;
+}
+.event a{
+	text-decoration: none;
+	color: #ffffff;
 }
 /*profile css*/
 #calendar{
@@ -122,13 +129,13 @@ footer{
 }
 #monthly_header{
 	border: solid 5px #ffffff;
-	background-color: Coral;
+	background-color: #79bea6;
 	width: 1110px;
 	text-align: center;
 }
 .day_of_week{
 	border: solid 5px #ffffff;
-	background-color: Coral;
+	background-color: #79bea6;
 	width: 150px;
 	display: inline-block;
 	text-align: center;
@@ -145,7 +152,7 @@ footer{
 }
 .monthly_day{
 	border: solid 5px #ffffff;
-	background-color: Coral;
+	background-color: #79bea6;
 	width: 150px;
 	height: 100px;
 	float: left;
